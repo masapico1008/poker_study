@@ -619,6 +619,71 @@
     border-radius: 2px;
   }
 
+  /* ミニフローインジケータ */
+  .mini-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.4vw;
+    padding: 0.6vh 0.9vw;
+    background: rgba(10, 8, 5, 0.5);
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .mini-flow:hover {
+    border-color: var(--gold);
+    background: rgba(200, 163, 90, 0.08);
+  }
+
+  .mini-flow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-right: 0.5vw;
+  }
+
+  .mini-flow:hover .mini-flow-label { color: var(--gold-bright); }
+
+  .mini-step {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--ink-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--ink-muted);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .mini-step.active {
+    background: var(--gold-bright);
+    color: var(--bg-deep);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px rgba(232, 196, 120, 0.4);
+    transform: scale(1.15);
+    font-weight: 700;
+  }
+
+  .mini-step.related {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .mini-flow-sep {
+    width: 8px;
+    height: 1px;
+    background: var(--ink-muted);
+    flex-shrink: 0;
+  }
+
   /* アクション判断フローチャート */
   .flowchart {
     display: flex;
@@ -798,32 +863,44 @@
     display: flex;
     gap: 0;
     margin-bottom: 2.5vh;
-    border-bottom: 1px solid var(--line);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(10, 8, 5, 0.95);
+    padding: 0;
   }
 
   .slide-tab {
-    padding: 1vh 1.5vw;
+    padding: 1.5vh 1.5vw;
     background: none;
     border: none;
-    border-bottom: 2px solid transparent;
-    color: var(--ink-muted);
+    color: var(--ink);
     cursor: pointer;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     transition: all 0.2s;
     white-space: nowrap;
-    margin-bottom: -1px;
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid var(--line);
+    font-weight: 500;
   }
 
-  .slide-tab:hover { color: var(--ink-dim); }
+  .slide-tab:last-child {
+    border-right: none;
+  }
+
+  .slide-tab:hover {
+    color: var(--gold-bright);
+    background: rgba(200, 163, 90, 0.05);
+  }
 
   .slide-tab.active {
-    color: var(--gold-bright);
-    border-bottom-color: var(--gold-bright);
+    color: var(--bg-deep);
+    background: var(--gold-bright);
+    font-weight: 600;
   }
 
   .tab-content {
@@ -1851,24 +1928,39 @@
   .summary-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.5vh;
-    max-width: 60em;
+    gap: 0.6vh;
+    max-width: 65em;
     margin: 0 auto;
+  }
+
+  .summary-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 2vh;
+    margin-bottom: 0.5vh;
+    padding-bottom: 0.5vh;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .summary-category:first-child {
+    margin-top: 0;
   }
 
   .summary-item {
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 2vw;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5vw;
     align-items: baseline;
-    padding: 1.5vh 0;
-    border-bottom: 1px solid var(--line);
+    padding: 1vh 0;
   }
 
   .summary-num {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     color: var(--gold-bright);
     line-height: 1;
     text-align: right;
@@ -1876,14 +1968,23 @@
 
   .summary-text {
     font-family: 'Shippori Mincho', serif;
-    font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+    font-size: clamp(0.88rem, 1.2vw, 1.05rem);
     color: var(--ink);
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .summary-text .em {
     color: var(--gold-bright);
     font-weight: 600;
+  }
+
+  .summary-text .sub {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85em;
+    color: var(--ink-muted);
+    margin-top: 0.3vh;
   }
 
   /* アミューズメント特有スライド */
@@ -1987,6 +2088,8 @@
     .slide-header {
       margin-bottom: 3vh;
       padding-bottom: 1.5vh;
+      flex-wrap: wrap;
+      gap: 0.5vh 2vw;
     }
 
     .slide-section {
@@ -1998,8 +2101,13 @@
 
     .slide h2 {
       font-size: 1.55rem;
-      margin-bottom: 2vh;
+      margin-bottom: 1.5vh;
       line-height: 1.35;
+    }
+
+    /* タブがあるスライドでは h2 の下marginを更に詰める */
+    .slide h2 + .slide-tabs {
+      margin-top: 0;
     }
 
     .slide .lead {
@@ -2105,12 +2213,21 @@
     .signal-meaning { font-size: 0.82rem; line-height: 1.75; }
     .signal-action-tip { font-size: 0.6rem; }
 
-    /* スライドタブ */
-    .slide-tabs { margin-bottom: 2vh; }
+    /* スライドタブ(スマホ) */
+    .slide-tabs {
+      display: flex !important;
+      visibility: visible !important;
+      margin-bottom: 2.5vh;
+      padding: 0;
+      gap: 0;
+      min-height: 44px;
+      width: 100%;
+    }
     .slide-tab {
-      padding: 1vh 3vw;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      padding: 1.5vh 1.5vw;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      min-height: 44px;
     }
 
     /* Bet Sizing */
@@ -2136,25 +2253,80 @@
     .tier-hands { font-size: 0.85rem; padding: 1vh 0; }
     .tier-desc { font-size: 0.8rem; line-height: 1.7; }
 
-    /* Step 4 マトリクス */
+    /* Step 4 マトリクス: スマホは縦カード形式 */
     .matrix {
       display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      min-width: 100%;
+      width: 100%;
     }
-    .matrix thead, .matrix tbody { display: table; width: 100%; min-width: 480px; }
-    .matrix th { font-size: 0.55rem; padding: 1vh 0.5vw; letter-spacing: 0.1em; }
-    .matrix td { font-size: 0.7rem; padding: 1.2vh 0.5vw; }
-    .matrix td.tier-cell { width: 28%; font-size: 0.75rem; }
-    .matrix td.tier-cell .hands { font-size: 0.6rem; }
-    .verdict { font-size: 0.62rem; padding: 0.4vh 1.5vw; }
-    .verdict-note { font-size: 0.65rem; line-height: 1.5; }
+    .matrix thead { display: none; }
+    .matrix tbody { display: block; width: 100%; }
+    .matrix tbody tr {
+      display: block;
+      margin-bottom: 2vh;
+      padding: 1.5vh 4vw;
+      background: rgba(10, 8, 5, 0.5);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      border-radius: 3px;
+    }
+    .matrix tbody tr:last-child { margin-bottom: 0; }
+    .matrix td {
+      display: block;
+      border: none;
+      padding: 1vh 0;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+    .matrix td.tier-cell {
+      width: 100%;
+      padding: 0 0 1vh 0;
+      margin-bottom: 1vh;
+      border-bottom: 1px dashed var(--line);
+      font-size: 1rem;
+    }
+    .matrix td.tier-cell .hands {
+      font-size: 0.7rem;
+      margin-top: 0.3vh;
+    }
+    /* シナリオセル(2〜4列目)にラベルを付与 */
+    .matrix td:not(.tier-cell) {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 2vw;
+      align-items: start;
+      padding: 0.8vh 0;
+    }
+    .matrix td:nth-of-type(2)::before { content: 'vs UTG'; }
+    .matrix td:nth-of-type(3)::before { content: 'vs BTN'; }
+    .matrix td:nth-of-type(4)::before { content: 'vs 3-BET'; }
+    .matrix td:not(.tier-cell)::before {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+      padding-top: 0.3vh;
+    }
+    .verdict { font-size: 0.7rem; padding: 0.4vh 2vw; }
+    .verdict-note { font-size: 0.72rem; line-height: 1.5; margin-top: 0.4vh; }
 
     /* key-message */
     .key-message { padding: 2vh 5vw; font-size: 0.88rem; line-height: 1.8; margin-top: 2.5vh; }
     .key-message .lead-label { font-size: 0.55rem; }
     .slide-step { font-size: 0.55rem; padding: 0.3vh 1.5vw; }
+
+    /* ミニフロー(スマホ) */
+    .mini-flow {
+      gap: 1.2vw;
+      padding: 0.6vh 2vw;
+    }
+    .mini-flow-label { font-size: 0.5rem; margin-right: 1vw; letter-spacing: 0.15em; }
+    .mini-step {
+      width: 16px;
+      height: 16px;
+      font-size: 0.5rem;
+    }
+    .mini-flow-sep { width: 5px; }
     .why-bb-text p { font-size: 0.9rem; line-height: 1.85; margin-bottom: 2.2vh; }
     .chip-comparison { padding: 3vh 5vw; }
     .chip-comparison-title { font-size: 0.62rem; margin-bottom: 2.5vh; }
@@ -2270,13 +2442,20 @@
     .glossary-category { font-size: 0.88rem; margin-bottom: 1.2vh; margin-top: 2vh; }
 
     /* まとめ */
-    .summary-item {
-      grid-template-columns: 55px 1fr;
-      gap: 3vw;
-      padding: 1.8vh 0;
+    .summary-grid { gap: 0.5vh; }
+    .summary-category {
+      font-size: 0.62rem;
+      margin-top: 2.5vh;
+      letter-spacing: 0.2em;
     }
-    .summary-num { font-size: 1.85rem; }
-    .summary-text { font-size: 0.98rem; line-height: 1.6; }
+    .summary-item {
+      grid-template-columns: 38px 1fr;
+      gap: 3vw;
+      padding: 1.2vh 0;
+    }
+    .summary-num { font-size: 1.5rem; }
+    .summary-text { font-size: 0.88rem; line-height: 1.65; }
+    .summary-text .sub { font-size: 0.78rem; margin-top: 0.4vh; }
 
     /* ナビ */
     .nav {
@@ -2391,7 +2570,7 @@
       </button>
       <button class="toc-item" data-jump="12">
         <span class="toc-num">xi</span>
-        <span class="toc-name">最低限これだけは</span>
+        <span class="toc-name">まとめ</span>
         <span class="toc-chapter">Final</span>
       </button>
       <a class="toc-item toc-external" href="./hand-ranges.html">
@@ -2514,7 +2693,7 @@
   <section class="slide" data-slide="4">
     <div class="slide-header">
       <div class="slide-section">Chapter III — Position</div>
-      <span class="slide-step">Step 1 &amp; 5</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step active">1</span><span class="mini-flow-sep"></span><span class="mini-step">2</span><span class="mini-flow-sep"></span><span class="mini-step">3</span><span class="mini-flow-sep"></span><span class="mini-step">4</span><span class="mini-flow-sep"></span><span class="mini-step active">5</span><span class="mini-flow-sep"></span><span class="mini-step">6</span></a>
       <div class="slide-pager"><span class="current">04</span> / 12</div>
     </div>
     <h2>ポジション <span class="accent">— ここが一番大事</span></h2>
@@ -2551,7 +2730,7 @@
   <section class="slide" data-slide="5">
     <div class="slide-header">
       <div class="slide-section">Chapter IV — Stack & Stage</div>
-      <span class="slide-step">Step 1-b</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step active">1</span><span class="mini-flow-sep"></span><span class="mini-step">2</span><span class="mini-flow-sep"></span><span class="mini-step">3</span><span class="mini-flow-sep"></span><span class="mini-step">4</span><span class="mini-flow-sep"></span><span class="mini-step">5</span><span class="mini-flow-sep"></span><span class="mini-step">6</span></a>
       <div class="slide-pager"><span class="current">05</span> / 12</div>
     </div>
     <h2>スタック <span class="accent">— BB換算と戦略</span></h2>
@@ -2643,7 +2822,7 @@
   <section class="slide" data-slide="6">
     <div class="slide-header">
       <div class="slide-section">Chapter IV — Stack & Stage</div>
-      <span class="slide-step">Step 1-c</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step active">1</span><span class="mini-flow-sep"></span><span class="mini-step">2</span><span class="mini-flow-sep"></span><span class="mini-step">3</span><span class="mini-flow-sep"></span><span class="mini-step">4</span><span class="mini-flow-sep"></span><span class="mini-step">5</span><span class="mini-flow-sep"></span><span class="mini-step">6</span></a>
       <div class="slide-pager"><span class="current">06</span> / 12</div>
     </div>
     <h2>ステージ <span class="accent">— ハンドの進行と判断材料</span></h2>
@@ -2726,7 +2905,7 @@
   <section class="slide" data-slide="7">
     <div class="slide-header">
       <div class="slide-section">Chapter V — Reading the Table</div>
-      <span class="slide-step">Step 2 of 6</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step">1</span><span class="mini-flow-sep"></span><span class="mini-step active">2</span><span class="mini-flow-sep"></span><span class="mini-step">3</span><span class="mini-flow-sep"></span><span class="mini-step">4</span><span class="mini-flow-sep"></span><span class="mini-step">5</span><span class="mini-flow-sep"></span><span class="mini-step">6</span></a>
       <div class="slide-pager"><span class="current">07</span> / 12</div>
     </div>
     <h2>アクション履歴 <span class="accent">— 何が読み取れるか</span></h2>
@@ -2798,7 +2977,7 @@
   <section class="slide" data-slide="8">
     <div class="slide-header">
       <div class="slide-section">Chapter V — Reading the Table</div>
-      <span class="slide-step">Step 3 &amp; 4</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step">1</span><span class="mini-flow-sep"></span><span class="mini-step">2</span><span class="mini-flow-sep"></span><span class="mini-step active">3</span><span class="mini-flow-sep"></span><span class="mini-step active">4</span><span class="mini-flow-sep"></span><span class="mini-step">5</span><span class="mini-flow-sep"></span><span class="mini-step">6</span></a>
       <div class="slide-pager"><span class="current">08</span> / 12</div>
     </div>
     <h2>ハンド評価 <span class="accent">— 絶対値と相対評価</span></h2>
@@ -2892,7 +3071,7 @@
   <section class="slide" data-slide="9">
     <div class="slide-header">
       <div class="slide-section">Chapter VI — Bet Strategy</div>
-      <span class="slide-step">Step 6 of 6</span>
+      <a class="mini-flow" data-jump="3" title="フローチャートに戻る"><span class="mini-flow-label">FLOW</span><span class="mini-step">1</span><span class="mini-flow-sep"></span><span class="mini-step">2</span><span class="mini-flow-sep"></span><span class="mini-step">3</span><span class="mini-flow-sep"></span><span class="mini-step">4</span><span class="mini-flow-sep"></span><span class="mini-step">5</span><span class="mini-flow-sep"></span><span class="mini-step active">6</span></a>
       <div class="slide-pager"><span class="current">09</span> / 12</div>
     </div>
     <h2>ベットの <span class="accent">理由とサイズ</span></h2>
@@ -3183,33 +3362,76 @@
   <!-- スライド12: まとめ -->
   <section class="slide" data-slide="12">
     <div class="slide-header">
-      <div class="slide-section">Final — Five Essentials</div>
+      <div class="slide-section">Final — Summary</div>
       <div class="slide-pager"><span class="current">12</span> / 12</div>
     </div>
-    <h2>最低限 <span class="accent">これだけは</span></h2>
-    <div class="lead">この5つを意識してもらえれば、初心者でも事故なく楽しめます。</div>
+    <h2>本セッションの <span class="accent">まとめ</span></h2>
+    <div class="lead">フローチャート全体を通して、押さえておきたい8つのポイント。</div>
     <div class="content">
       <div class="summary-grid">
+
+        <div class="summary-category">— Etiquette / 所作 —</div>
         <div class="summary-item">
           <div class="summary-num">i</div>
-          <div class="summary-text">アクションは自分の番で <span class="em">口頭宣言</span> を活用</div>
+          <div class="summary-text">
+            アクションは自分の番で <span class="em">口頭宣言</span>、ベットは <span class="em">一回の動作</span> で
+            <span class="sub">高額チップ1枚=コール扱いなので注意</span>
+          </div>
         </div>
         <div class="summary-item">
           <div class="summary-num">ii</div>
-          <div class="summary-text">BBのときは <span class="em">アンティも忘れず</span> 一緒に出す</div>
+          <div class="summary-text">
+            BBのときは <span class="em">アンティも忘れず</span> 一緒に出す
+          </div>
         </div>
+
+        <div class="summary-category">— Decision Framework / 判断の型 —</div>
         <div class="summary-item">
           <div class="summary-num">iii</div>
-          <div class="summary-text">スタックは常に <span class="em">BB換算</span> で把握</div>
+          <div class="summary-text">
+            毎ハンド <span class="em">6ステップ</span> で考える
+            <span class="sub">ポジション → スタック → 履歴 → 自ハンド → 相手レンジ → R/C/F</span>
+          </div>
         </div>
         <div class="summary-item">
           <div class="summary-num">iv</div>
-          <div class="summary-text"><span class="em">ポジションで参加ハンドを変える</span> ─ アーリーは絞り、ボタンは広く</div>
+          <div class="summary-text">
+            <span class="em">ポジションで参加ハンドを変える</span> ─ アーリーは絞り、ボタンは広く
+          </div>
         </div>
         <div class="summary-item">
           <div class="summary-num">v</div>
-          <div class="summary-text">良いハンドのときは <span class="em">リンプせず3ベット</span> で参加人数を絞る</div>
+          <div class="summary-text">
+            良いハンドのときは <span class="em">リンプせず3ベット</span> で参加人数を絞る
+            <span class="sub">参加人数が少ないほど勝率↑</span>
+          </div>
         </div>
+        <div class="summary-item">
+          <div class="summary-num">vi</div>
+          <div class="summary-text">
+            自分のハンドの絶対値より <span class="em">相手のレンジとの相対評価</span> が大事
+            <span class="sub">AAでも3ベット相手には QQ/AK 警戒</span>
+          </div>
+        </div>
+
+        <div class="summary-category">— Bet / ベット —</div>
+        <div class="summary-item">
+          <div class="summary-num">vii</div>
+          <div class="summary-text">
+            ベットには <span class="em">理由(バリュー or ブラフ)</span> と <span class="em">標準サイズ</span> を意識
+            <span class="sub">プリ=3BB / ポスト=ポットの 1/2〜2/3</span>
+          </div>
+        </div>
+
+        <div class="summary-category">— Mastery / 上達 —</div>
+        <div class="summary-item">
+          <div class="summary-num">viii</div>
+          <div class="summary-text">
+            まずは <span class="em">プリフロップの最適アクション</span> をマスターする
+            <span class="sub">判断回数が一番多く、後続全ストリートの起点</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -3242,7 +3464,7 @@
   document.getElementById('homeBtn').addEventListener('click', () => show(0));
 
   // 目次クリック・フローチャート小項目クリックで該当スライドへ
-  document.querySelectorAll('.toc-item, .flow-substep, .chart-link[data-jump]').forEach(item => {
+  document.querySelectorAll('.toc-item, .flow-substep, .chart-link[data-jump], .mini-flow').forEach(item => {
     item.addEventListener('click', (e) => {
       const target = parseInt(item.dataset.jump, 10);
       if (!isNaN(target) && target >= 1 && target <= slides.length) {
@@ -3279,18 +3501,39 @@
   let touchStartY = 0;
   let touchEndX = 0;
   let touchEndY = 0;
+  let swipeDisabled = false;
   const SWIPE_THRESHOLD = 60;
   const VERTICAL_TOLERANCE = 80;
+
+  /**
+   * タッチ開始位置が横スクロール可能な要素内かどうか判定。
+   * 横スクロール領域内ならスライド遷移用スワイプを無効化する。
+   */
+  function isInsideHorizontalScroller(el) {
+    while (el && el !== document.body) {
+      if (el.nodeType === 1) {
+        const style = window.getComputedStyle(el);
+        const overflowX = style.overflowX;
+        const canScrollX = (overflowX === 'auto' || overflowX === 'scroll')
+                           && el.scrollWidth > el.clientWidth;
+        if (canScrollX) return true;
+      }
+      el = el.parentElement;
+    }
+    return false;
+  }
 
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
+    swipeDisabled = isInsideHorizontalScroller(e.target);
   }, { passive: true });
 
   document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
+    if (!swipeDisabled) handleSwipe();
+    swipeDisabled = false;
   }, { passive: true });
 
   function handleSwipe() {
