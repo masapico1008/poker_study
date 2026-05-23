@@ -131,50 +131,124 @@
 
   /* 表紙スライド */
   .cover {
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
-    padding: 0 8vw;
+    padding: 4vh 6vw 8vh;
+    overflow-y: auto;
+  }
+
+  .cover-header {
+    margin-bottom: 3vh;
+    width: 100%;
   }
 
   .cover .ornament {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     color: var(--gold);
-    letter-spacing: 1.5rem;
-    margin-bottom: 3vh;
-    padding-left: 1.5rem;
+    letter-spacing: 1.2rem;
+    margin-bottom: 2vh;
+    padding-left: 1.2rem;
   }
 
   .cover h1 {
     font-family: 'Shippori Mincho', serif;
-    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-size: clamp(1.5rem, 3.8vw, 2.6rem);
     font-weight: 600;
     color: var(--ink);
-    margin-bottom: 2.5vh;
+    margin-bottom: 1.5vh;
     line-height: 1.3;
   }
 
   .cover .subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
     color: var(--gold-bright);
-    margin-bottom: 5vh;
+    margin-bottom: 1.5vh;
   }
 
   .cover .tagline {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
     color: var(--ink-muted);
     text-transform: uppercase;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    padding: 1.5vh 2rem;
+    padding: 1vh 1.5rem;
     display: inline-block;
   }
 
-  /* 通常スライドのタイトル */
+  /* 表紙の目次 */
+  .toc {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+  }
+
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5vh;
+    text-align: center;
+  }
+
+  .toc-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 1.5vw;
+    align-items: baseline;
+    padding: 1vh 1.5vw;
+    border: none;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    transition: all 0.2s ease;
+  }
+
+  .toc-item:hover {
+    background: rgba(200, 163, 90, 0.08);
+    padding-left: 2vw;
+  }
+
+  .toc-item:hover .toc-num,
+  .toc-item:hover .toc-name {
+    color: var(--gold-bright);
+  }
+
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
+    transition: color 0.2s;
+  }
+
+  .toc-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+
+  .toc-chapter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+
+  /* テーブルマナー以降の通常スライドのタイトル */
   .slide h2 {
     font-family: 'Shippori Mincho', serif;
     font-size: clamp(1.5rem, 2.8vw, 2.4rem);
@@ -1098,6 +1172,12 @@
     background: rgba(200, 163, 90, 0.1);
   }
 
+  #homeBtn {
+    font-size: 1.1rem;
+    padding: 0.2rem 0.7rem;
+    color: var(--gold);
+  }
+
   .nav-hint {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
@@ -1122,117 +1202,125 @@
   .suits .black { color: var(--ink); }
 
   @media (max-width: 768px) {
-    /* スライド本体: スクロール許可 & 余白調整 */
+    /* スライド本体: スクロール許可 & ゆとりある余白 */
     html, body { overflow: auto; }
     body { -webkit-text-size-adjust: 100%; }
 
     .slide {
-      padding: 3vh 5vw 12vh;
+      padding: 4vh 6vw 14vh;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
 
     .slide-header {
-      margin-bottom: 2vh;
-      padding-bottom: 1vh;
+      margin-bottom: 3vh;
+      padding-bottom: 1.5vh;
     }
 
     .slide-section {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
     }
 
-    .slide-pager { font-size: 0.75rem; }
+    .slide-pager { font-size: 0.78rem; }
 
     .slide h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5vh;
+      font-size: 1.55rem;
+      margin-bottom: 2vh;
+      line-height: 1.35;
     }
 
     .slide .lead {
-      font-size: 0.9rem;
-      margin-bottom: 2.5vh;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 3.5vh;
     }
 
     .content { overflow: visible; }
 
     /* 表紙 */
-    .cover { padding: 0 5vw; }
+    .cover { padding: 4vh 6vw 12vh; }
     .cover .ornament {
-      font-size: 1.8rem;
-      letter-spacing: 1rem;
-      padding-left: 1rem;
+      font-size: 1.6rem;
+      letter-spacing: 0.9rem;
+      padding-left: 0.9rem;
       margin-bottom: 2vh;
     }
-    .cover h1 { font-size: 1.8rem; }
-    .cover .subtitle { font-size: 1rem; margin-bottom: 3vh; }
-    .cover .tagline { font-size: 0.65rem; padding: 1vh 1.2rem; }
+    .cover h1 { font-size: 1.55rem; margin-bottom: 1.5vh; }
+    .cover .subtitle { font-size: 0.95rem; margin-bottom: 1.5vh; }
+    .cover .tagline { font-size: 0.62rem; padding: 1vh 1.2rem; }
+    .cover-header { margin-bottom: 4vh; }
 
-    /* マナーカード: 縦並び */
+    /* 目次 */
+    .toc { gap: 0; }
+    .toc-title { margin-bottom: 2vh; }
+    .toc-item {
+      grid-template-columns: 32px 1fr auto;
+      gap: 3vw;
+      padding: 1.6vh 3vw;
+    }
+    .toc-num { font-size: 1.05rem; }
+    .toc-name { font-size: 0.88rem; line-height: 1.4; }
+    .toc-chapter { font-size: 0.55rem; }
+
+    /* マナーカード: 縦並び・余裕 */
     .manner-grid {
       grid-template-columns: 1fr;
-      gap: 2.5vh;
+      gap: 3.5vh;
     }
-    .manner-card .num { font-size: 2rem; }
-    .manner-card h3 { font-size: 1.05rem; }
-    .manner-card p { font-size: 0.9rem; }
-
-    /* スタックテーブル */
-    .stack-table td {
-      padding: 1.4vh 0.8rem;
-      font-size: 0.85rem;
-    }
-    .stack-table .bb-label {
-      width: 35%;
-      font-size: 0.8rem;
-    }
+    .manner-card { padding-top: 2.5vh; }
+    .manner-card .num { font-size: 2.2rem; margin-bottom: 1.5vh; }
+    .manner-card h3 { font-size: 1.05rem; margin-bottom: 1.8vh; }
+    .manner-card p { font-size: 0.9rem; line-height: 1.8; }
 
     /* なぜBB換算か */
     .why-bb {
       grid-template-columns: 1fr;
-      gap: 2.5vh;
+      gap: 3.5vh;
     }
-    .why-bb-text p { font-size: 0.85rem; line-height: 1.7; }
-    .chip-comparison { padding: 2vh 4vw; }
-    .chip-comparison-title { font-size: 0.65rem; }
-    .chip-amount .num { font-size: 1rem; }
+    .why-bb-text p { font-size: 0.9rem; line-height: 1.85; margin-bottom: 2.2vh; }
+    .chip-comparison { padding: 3vh 5vw; }
+    .chip-comparison-title { font-size: 0.62rem; margin-bottom: 2.5vh; }
+    .chip-scenario { margin-bottom: 2.2vh; padding-bottom: 2.2vh; gap: 2vw; }
+    .chip-amount .num { font-size: 1.05rem; }
     .chip-amount .label { font-size: 0.6rem; }
-    .chip-verdict { font-size: 0.82rem; }
+    .chip-verdict { font-size: 0.85rem; line-height: 1.5; }
 
     /* 詳細戦略テーブル */
     .stack-table-detailed th {
-      font-size: 0.55rem;
-      padding: 1vh 0.5rem;
+      font-size: 0.58rem;
+      padding: 1.3vh 0.6rem;
     }
     .stack-table-detailed td {
-      padding: 1.2vh 0.5rem;
-      font-size: 0.72rem;
+      padding: 1.8vh 0.6rem;
+      font-size: 0.78rem;
     }
-    .stack-table-detailed .bb-cell { font-size: 0.7rem; width: 18%; }
-    .stack-table-detailed .strategy-cell { font-size: 0.75rem; width: 30%; }
-    .stack-table-detailed .reason-cell { font-size: 0.72rem; line-height: 1.5; }
+    .stack-table-detailed .bb-cell { font-size: 0.75rem; width: 20%; padding-top: 2vh; }
+    .stack-table-detailed .strategy-cell { font-size: 0.8rem; width: 32%; line-height: 1.6; }
+    .stack-table-detailed .reason-cell { font-size: 0.76rem; line-height: 1.65; }
 
-    /* ポジション図(2スライドとも) */
+    /* ポジション図 */
     .position-layout,
-    .position-explain {
+    .position-explain,
+    .position-unified {
       grid-template-columns: 1fr;
-      gap: 3vh;
+      gap: 3.5vh;
     }
     .position-table-vis,
     .explain-table-vis {
-      max-height: 55vw;
-      max-width: 85vw;
-      width: 85vw;
+      max-height: 58vw;
+      max-width: 88vw;
+      width: 88vw;
     }
     .seat {
       width: 14%;
-      font-size: 0.55rem;
+      font-size: 0.58rem;
     }
     .seat-label {
       width: 16%;
-      font-size: 0.58rem;
+      font-size: 0.6rem;
     }
-    .seat-label .role { font-size: 0.48rem; margin-top: 1px; }
+    .seat-label .role { font-size: 0.5rem; margin-top: 1px; }
     .felt::before { font-size: 2rem; }
     .explain-table-vis .felt::before {
       font-size: 0.7rem;
@@ -1244,92 +1332,82 @@
     .glossary-item {
       grid-template-columns: 70px 1fr;
       gap: 3vw;
-      padding-bottom: 1vh;
+      padding-bottom: 1.5vh;
     }
     .legend-tag,
-    .glossary-abbr { font-size: 0.7rem; }
+    .glossary-abbr { font-size: 0.72rem; }
     .legend-desc,
-    .glossary-full { font-size: 0.8rem; }
-    .glossary-full .full-name { font-size: 0.85rem; }
+    .glossary-full { font-size: 0.85rem; line-height: 1.65; }
+    .glossary-full .full-name { font-size: 0.9rem; }
 
     /* 統合ポジション */
-    .position-unified {
-      grid-template-columns: 1fr;
-      gap: 2.5vh;
-    }
-    .position-right { gap: 1.5vh; }
-    .why-position-box { padding: 1.5vh 4vw; }
-    .why-position-box .why-label { font-size: 0.55rem; }
-    .why-position-box p { font-size: 0.78rem; line-height: 1.55; }
-    .position-range-table td { padding: 0.7vh 0.5vw; font-size: 0.7rem; }
-    .position-range-table .pos-tag { width: 25%; }
-    .position-range-table .pos-hands { font-size: 0.68rem; width: 38%; }
-    .position-range-table .pos-note { font-size: 0.7rem; }
+    .position-right { gap: 2.5vh; }
+    .why-position-box { padding: 2vh 5vw; }
+    .why-position-box .why-label { font-size: 0.58rem; margin-bottom: 1.5vh; }
+    .why-position-box p { font-size: 0.85rem; line-height: 1.75; margin-bottom: 1.5vh; }
+    .position-range-table td { padding: 1.3vh 0.8vw; font-size: 0.78rem; }
+    .position-range-table .pos-tag { width: 28%; font-size: 0.75rem; }
+    .position-range-table .pos-hands { font-size: 0.75rem; width: 22%; }
+    .position-range-table .pos-note { font-size: 0.78rem; line-height: 1.55; }
 
     /* ミスリスト */
     .mistake-grid {
       grid-template-columns: 1fr;
-      gap: 2vh;
+      gap: 3vh;
     }
+    .mistake-item {
+      grid-template-columns: 45px 1fr;
+      gap: 3vw;
+    }
+    .mistake-mark { font-size: 2rem; }
+    .mistake-item h3 { font-size: 1rem; margin-bottom: 1.2vh; }
+    .mistake-item p { font-size: 0.85rem; line-height: 1.75; }
 
     /* バリュー/ブラフ */
     .bet-purpose {
       grid-template-columns: 1fr;
-      gap: 2.5vh;
+      gap: 3vh;
     }
-    .bet-column { padding: 2vh 4vw; }
-    .bet-title { font-size: 1.1rem; }
-    .bet-subtitle { font-size: 0.85rem; margin-bottom: 1.5vh; padding-bottom: 1.5vh; }
-    .bet-question { font-size: 0.9rem; }
-    .bet-conditions li { font-size: 0.82rem; }
-    .bet-example { font-size: 0.78rem; padding: 1.2vh 3vw; }
-    .bet-warning { font-size: 0.85rem; padding: 1.2vh 4vw; }
+    .bet-column { padding: 2.5vh 5vw; }
+    .bet-title { font-size: 1.15rem; margin-bottom: 1vh; }
+    .bet-subtitle { font-size: 0.88rem; margin-bottom: 2vh; padding-bottom: 2vh; }
+    .bet-question { font-size: 0.92rem; line-height: 1.6; margin-bottom: 2vh; }
+    .bet-conditions li { font-size: 0.85rem; line-height: 1.75; padding: 0.8vh 0 0.8vh 1.2rem; }
+    .bet-example { font-size: 0.82rem; padding: 1.8vh 4vw; line-height: 1.7; }
+    .bet-warning { font-size: 0.88rem; padding: 2vh 5vw; line-height: 1.7; }
 
     /* 用語集 */
     .glossary-grid,
     .glossary-grid.three-col {
       grid-template-columns: 1fr;
-      gap: 0.5vh 0;
+      gap: 0.8vh 0;
     }
     .term {
-      grid-template-columns: minmax(70px, auto) 1fr;
-      gap: 2vw;
-      padding: 0.5vh 0;
-    }
-    .term-word { font-size: 0.72rem; }
-    .term-def { font-size: 0.72rem; line-height: 1.45; }
-    .glossary-category { font-size: 0.82rem; }
-    .mistake-item {
-      grid-template-columns: 40px 1fr;
+      grid-template-columns: minmax(80px, auto) 1fr;
       gap: 3vw;
+      padding: 1vh 0;
     }
-    .mistake-mark { font-size: 1.8rem; }
-    .mistake-item h3 { font-size: 0.95rem; }
-    .mistake-item p { font-size: 0.8rem; }
-
-    /* アミューズメント所作 */
-    .amusement-notes p {
-      font-size: 0.9rem;
-      line-height: 1.8;
-      margin-bottom: 2vh;
-    }
+    .term-word { font-size: 0.78rem; }
+    .term-def { font-size: 0.78rem; line-height: 1.6; }
+    .glossary-category { font-size: 0.88rem; margin-bottom: 1.2vh; margin-top: 2vh; }
 
     /* まとめ */
     .summary-item {
-      grid-template-columns: 50px 1fr;
+      grid-template-columns: 55px 1fr;
       gap: 3vw;
-      padding: 1.2vh 0;
+      padding: 1.8vh 0;
     }
-    .summary-num { font-size: 1.8rem; }
-    .summary-text { font-size: 0.95rem; }
+    .summary-num { font-size: 1.85rem; }
+    .summary-text { font-size: 0.98rem; line-height: 1.6; }
 
     /* ナビ */
     .nav {
-      bottom: 1.5vh;
+      bottom: 1.8vh;
       gap: 0.8rem;
-      padding: 0.6rem 1rem;
+      padding: 0.7rem 1.2rem;
     }
-    .nav button { font-size: 0.75rem; padding: 0.2rem 0.5rem; }
+    .nav button { font-size: 0.78rem; padding: 0.25rem 0.6rem; }
+    #homeBtn { font-size: 1.05rem; }
     .nav-hint-pc { display: none; }
     .nav-hint-mobile { display: inline; }
 
@@ -1342,12 +1420,13 @@
     }
   }
 
-  /* 超小型(iPhone SE等): さらに調整 */
+  /* 超小型(iPhone SE等): さらに微調整 */
   @media (max-width: 380px) {
-    .slide h2 { font-size: 1.3rem; }
-    .cover h1 { font-size: 1.5rem; }
-    .seat-label { font-size: 0.5rem; }
-    .seat-label .role { font-size: 0.42rem; }
+    .slide h2 { font-size: 1.35rem; }
+    .cover h1 { font-size: 1.4rem; }
+    .seat-label { font-size: 0.52rem; }
+    .seat-label .role { font-size: 0.44rem; }
+    .toc-name { font-size: 0.82rem; }
   }
 
   /* 横向き(ランドスケープ)スマホ */
@@ -1374,10 +1453,65 @@
 
   <!-- スライド1: 表紙 -->
   <section class="slide cover active" data-slide="1">
-    <div class="ornament">♠ ♥ ♣ ♦</div>
-    <h1>アミューズメントカジノ<br>トーナメント参加前の心得</h1>
-    <div class="subtitle">No-Limit Texas Hold'em — for beginners</div>
-    <div class="tagline">five things to remember</div>
+    <div class="cover-header">
+      <div class="ornament">♠ ♥ ♣ ♦</div>
+      <h1>アミューズメントカジノ<br>トーナメント参加前の心得</h1>
+      <div class="subtitle">No-Limit Texas Hold'em — for beginners</div>
+      <div class="tagline">tap to jump</div>
+    </div>
+    <nav class="toc">
+      <div class="toc-title">— Contents —</div>
+      <button class="toc-item" data-jump="2">
+        <span class="toc-num">i</span>
+        <span class="toc-name">テーブルマナー</span>
+        <span class="toc-chapter">Ch. I</span>
+      </button>
+      <button class="toc-item" data-jump="3">
+        <span class="toc-num">ii</span>
+        <span class="toc-name">なぜBB換算で見るのか</span>
+        <span class="toc-chapter">Ch. II</span>
+      </button>
+      <button class="toc-item" data-jump="4">
+        <span class="toc-num">iii</span>
+        <span class="toc-name">BB帯別の戦略と根拠</span>
+        <span class="toc-chapter">Ch. II</span>
+      </button>
+      <button class="toc-item" data-jump="5">
+        <span class="toc-num">iv</span>
+        <span class="toc-name">ポジション — ここが一番大事</span>
+        <span class="toc-chapter">Ch. III</span>
+      </button>
+      <button class="toc-item" data-jump="6">
+        <span class="toc-num">v</span>
+        <span class="toc-name">ベットの理由 — バリュー or ブラフ</span>
+        <span class="toc-chapter">Ch. IV</span>
+      </button>
+      <button class="toc-item" data-jump="7">
+        <span class="toc-num">vi</span>
+        <span class="toc-name">初心者がやりがちなミス</span>
+        <span class="toc-chapter">Ch. V</span>
+      </button>
+      <button class="toc-item" data-jump="8">
+        <span class="toc-num">vii</span>
+        <span class="toc-name">基本用語 — ゲーム進行・アクション</span>
+        <span class="toc-chapter">Glossary I</span>
+      </button>
+      <button class="toc-item" data-jump="9">
+        <span class="toc-num">viii</span>
+        <span class="toc-name">基本用語 — ポジション・役・スタック</span>
+        <span class="toc-chapter">Glossary II</span>
+      </button>
+      <button class="toc-item" data-jump="10">
+        <span class="toc-num">ix</span>
+        <span class="toc-name">基本用語 — 戦略・状況・俗語</span>
+        <span class="toc-chapter">Glossary III</span>
+      </button>
+      <button class="toc-item" data-jump="11">
+        <span class="toc-num">x</span>
+        <span class="toc-name">最低限これだけは</span>
+        <span class="toc-chapter">Final</span>
+      </button>
+    </nav>
   </section>
 
   <!-- スライド2: テーブルマナー -->
@@ -1820,6 +1954,7 @@
 
 <div class="nav">
   <button id="prevBtn">‹ PREV</button>
+  <button id="homeBtn" title="目次に戻る">☰</button>
   <span class="nav-hint nav-hint-pc">← → KEYS</span>
   <span class="nav-hint nav-hint-mobile">SWIPE</span>
   <button id="nextBtn">NEXT ›</button>
@@ -1840,6 +1975,17 @@
 
   document.getElementById('nextBtn').addEventListener('click', next);
   document.getElementById('prevBtn').addEventListener('click', prev);
+  document.getElementById('homeBtn').addEventListener('click', () => show(0));
+
+  // 目次クリックで該当スライドへ
+  document.querySelectorAll('.toc-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const target = parseInt(item.dataset.jump, 10);
+      if (!isNaN(target) && target >= 1 && target <= slides.length) {
+        show(target - 1);  // data-jump は 1-indexed
+      }
+    });
+  });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
