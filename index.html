@@ -248,6 +248,28 @@
     text-transform: uppercase;
   }
 
+  .toc-item.toc-external {
+    text-decoration: none;
+    margin-top: 1.5vh;
+    padding-top: 2vh;
+    border-top: 1px dashed var(--line);
+  }
+
+  .toc-item.toc-external .toc-num {
+    color: var(--gold-bright);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-style: normal;
+  }
+
+  .toc-item.toc-external .toc-name {
+    color: var(--gold-bright);
+  }
+
+  .toc-item.toc-external:hover .toc-name {
+    color: var(--ink);
+  }
+
   /* テーブルマナー以降の通常スライドのタイトル */
   .slide h2 {
     font-family: 'Shippori Mincho', serif;
@@ -562,6 +584,27 @@
     vertical-align: middle;
     margin-right: 0.5vw;
     border-radius: 2px;
+  }
+
+  /* ハンドレンジチャートへのリンク */
+  .chart-link {
+    display: inline-block;
+    margin-top: 1.5vh;
+    padding: 0.8vh 1.2vw;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-bright);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .chart-link:hover {
+    background: rgba(200, 163, 90, 0.08);
+    border-color: var(--gold);
+    transform: translateX(3px);
   }
 
   /* スタック価値の説明スライド */
@@ -1349,6 +1392,7 @@
     .position-range-table .pos-tag { width: 28%; font-size: 0.75rem; }
     .position-range-table .pos-hands { font-size: 0.75rem; width: 22%; }
     .position-range-table .pos-note { font-size: 0.78rem; line-height: 1.55; }
+    .chart-link { font-size: 0.7rem; padding: 1vh 3vw; margin-top: 2vh; }
 
     /* ミスリスト */
     .mistake-grid {
@@ -1511,6 +1555,11 @@
         <span class="toc-name">最低限これだけは</span>
         <span class="toc-chapter">Final</span>
       </button>
+      <a class="toc-item toc-external" href="./hand-ranges.html">
+        <span class="toc-num">+</span>
+        <span class="toc-name">プリフロップ ハンドレンジ早見表 ↗</span>
+        <span class="toc-chapter">Reference</span>
+      </a>
     </nav>
   </section>
 
@@ -1693,6 +1742,7 @@
               <td class="pos-note">安く入れるが後で不利になる</td>
             </tr>
           </table>
+          <a href="./hand-ranges.html" class="chart-link">→ ハンドレンジ早見表で詳細を見る</a>
         </div>
       </div>
     </div>
