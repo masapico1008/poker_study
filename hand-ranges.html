@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>プリフロップ ハンドレンジ早見表 / 9-max</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0805;
+    --bg-felt: #0f3a2e;
+    --ink: #f4ecd8;
+    --ink-dim: #b8a888;
+    --ink-muted: #6b5d4a;
+    --gold: #c8a35a;
+    --gold-bright: #e8c478;
+    --red: #b8323a;
+    --line: rgba(200, 163, 90, 0.25);
+
+    /* チャート用配色 */
+    --raise: #b8323a;
+    --raise-bg: rgba(184, 50, 58, 0.85);
+    --call: #4a8c5e;
+    --call-bg: rgba(74, 140, 94, 0.85);
+    --fold-bg: rgba(40, 35, 28, 0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg-deep);
+    color: var(--ink);
+    font-family: 'Shippori Mincho', serif;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(200, 163, 90, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(184, 50, 58, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.64 0 0 0 0 0.35 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5vh 4vw 12vh;
+  }
+
+  /* ヘッダー */
+  header {
+    text-align: center;
+    margin-bottom: 5vh;
+    padding-bottom: 3vh;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ornament {
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 2vh;
+  }
+
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1vh;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    color: var(--gold-bright);
+    margin-bottom: 1.5vh;
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+
+  /* セクション */
+  .chart-section {
+    margin-bottom: 6vh;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5vh;
+    padding-bottom: 1.5vh;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .section-title .accent {
+    color: var(--gold-bright);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    color: var(--ink-dim);
+    line-height: 1.6;
+    margin-bottom: 2.5vh;
+    max-width: 50em;
+  }
+
+  /* タブ(BBディフェンス用) */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2.5vh;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tab {
+    padding: 1.2vh 2vw;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .tab:hover { color: var(--ink-dim); }
+
+  .tab.active {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold-bright);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* チャートグリッド */
+  .chart-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1vh;
+  }
+
+  .chart {
+    display: grid;
+    grid-template-columns: repeat(13, minmax(36px, 1fr));
+    gap: 2px;
+    min-width: 480px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.55rem, 1.1vw, 0.78rem);
+    font-weight: 500;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1;
+    user-select: none;
+    transition: transform 0.15s;
+  }
+
+  .cell:hover {
+    transform: scale(1.08);
+    z-index: 5;
+    position: relative;
+    box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  }
+
+  .cell.raise {
+    background: var(--raise-bg);
+    color: #fff;
+  }
+
+  .cell.call {
+    background: var(--call-bg);
+    color: #fff;
+  }
+
+  .cell.fold {
+    background: var(--fold-bg);
+    color: var(--ink-muted);
+  }
+
+  /* 対角線(ペア)を強調 */
+  .cell.pair {
+    box-shadow: inset 0 0 0 1.5px var(--gold);
+  }
+
+  /* レジェンド */
+  .legend {
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+    margin-top: 3vh;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+  }
+
+  .legend-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
+
+  .legend-swatch.raise { background: var(--raise-bg); }
+  .legend-swatch.call { background: var(--call-bg); }
+  .legend-swatch.fold { background: var(--fold-bg); border: 1px solid var(--line); }
+  .legend-swatch.pair {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+  }
+
+  /* チャートの読み方 */
+  .how-to-read {
+    background: rgba(10, 8, 5, 0.5);
+    border-left: 2px solid var(--gold);
+    padding: 2vh 2.5vw;
+    margin-bottom: 4vh;
+    font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+    line-height: 1.75;
+    color: var(--ink-dim);
+  }
+
+  .how-to-read .key { color: var(--gold-bright); font-weight: 500; }
+  .how-to-read strong { color: var(--ink); font-weight: 500; }
+  .how-to-read .label-s { color: #fff; background: rgba(74, 140, 94, 0.6); padding: 0 0.4em; border-radius: 2px; }
+  .how-to-read .label-o { color: #fff; background: rgba(184, 50, 58, 0.6); padding: 0 0.4em; border-radius: 2px; }
+
+  /* 戻るリンク */
+  .back-link {
+    position: fixed;
+    bottom: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.8rem 1.5rem;
+    background: rgba(10, 8, 5, 0.9);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+  }
+
+  /* スートマーク */
+  .suits {
+    position: absolute;
+    top: 3vh;
+    right: 4vw;
+    font-size: 1.2rem;
+    letter-spacing: 0.4rem;
+    opacity: 0.4;
+    z-index: 11;
+  }
+
+  .suits .red { color: var(--red); }
+  .suits .black { color: var(--ink); }
+
+  /* スマホ調整 */
+  @media (max-width: 768px) {
+    .container { padding: 4vh 4vw 12vh; }
+    .chart-section { margin-bottom: 5vh; }
+    .section-desc { font-size: 0.88rem; line-height: 1.7; }
+    .how-to-read { padding: 2vh 5vw; font-size: 0.85rem; line-height: 1.8; }
+    .chart {
+      grid-template-columns: repeat(13, minmax(28px, 1fr));
+      min-width: 380px;
+    }
+    .cell { font-size: 0.58rem; }
+    .tab { padding: 1.2vh 4vw; font-size: 0.72rem; }
+    .legend-item { font-size: 0.7rem; }
+  }
+
+  @media (max-width: 380px) {
+    .chart {
+      grid-template-columns: repeat(13, minmax(24px, 1fr));
+      min-width: 340px;
+    }
+    .cell { font-size: 0.52rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="suits">
+  <span class="black">♠</span>
+  <span class="red">♥</span>
+  <span class="black">♣</span>
+  <span class="red">♦</span>
+</div>
+
+<div class="container">
+
+  <header>
+    <div class="ornament">♠ ♥ ♣ ♦</div>
+    <h1>プリフロップ ハンドレンジ早見表</h1>
+    <div class="subtitle">9-max Cash / Tournament — Quick Reference</div>
+    <div class="tagline">UTG · BTN · BB Defense</div>
+  </header>
+
+  <!-- 読み方ガイド -->
+  <div class="how-to-read">
+    <strong>表の読み方:</strong> 縦×横の13×13グリッドで、左上から右下の<span class="key">対角線がペア(AA, KK…22)</span>。<br>
+    対角線の<strong>上三角</strong>はスーテッド(同じスート)、例: AKs / KTs(<span class="label-s">s</span> = suited)。<br>
+    対角線の<strong>下三角</strong>はオフスート(別スート)、例: AKo / KTo(<span class="label-o">o</span> = offsuit)。<br>
+    セルの色がそのハンドのアクション = <span class="key">赤=Raise</span> / <span class="key">緑=Call</span> / 暗色=Fold。
+  </div>
+
+  <!-- セクション1: UTGオープン -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-tag">— Chart I —</span>
+      <h2 class="section-title">UTG <span class="accent">からのオープン</span></h2>
+    </div>
+    <p class="section-desc">アーリーポジション。後ろに8人残るため、参加できるハンドは厳選。プレミアハンド中心の最もタイトなレンジ。</p>
+    <div class="chart-wrap">
+      <div class="chart" id="chart-utg"></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch raise"></span>Raise (Open)</div>
+      <div class="legend-item"><span class="legend-swatch fold"></span>Fold</div>
+      <div class="legend-item"><span class="legend-swatch pair"></span>Pair</div>
+    </div>
+  </section>
+
+  <!-- セクション2: BTNオープン -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-tag">— Chart II —</span>
+      <h2 class="section-title">BTN <span class="accent">からのオープン</span></h2>
+    </div>
+    <p class="section-desc">最強ポジション。残るのはSB/BBのみ、しかも自分はポストフロップで必ず最後にアクション。広いレンジで攻める。</p>
+    <div class="chart-wrap">
+      <div class="chart" id="chart-btn"></div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch raise"></span>Raise (Open)</div>
+      <div class="legend-item"><span class="legend-swatch fold"></span>Fold</div>
+      <div class="legend-item"><span class="legend-swatch pair"></span>Pair</div>
+    </div>
+  </section>
+
+  <!-- セクション3: BBディフェンス -->
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-tag">— Chart III —</span>
+      <h2 class="section-title">BB <span class="accent">ディフェンス</span></h2>
+    </div>
+    <p class="section-desc">既に1BB払っている分、安く参加できる。相手のオープン位置によって守るレンジが大きく変わる。タブで切り替え。</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="bb-vs-btn">vs BTN OPEN</button>
+      <button class="tab" data-tab="bb-vs-utg">vs UTG OPEN</button>
+    </div>
+
+    <div class="tab-panel active" id="bb-vs-btn">
+      <p class="section-desc" style="margin-top: 1vh;">BTNは広く開くので、BBも広く守る。コール中心、強い手と相性の良いブラフ候補で3ベット。</p>
+      <div class="chart-wrap">
+        <div class="chart" id="chart-bb-vs-btn"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="bb-vs-utg">
+      <p class="section-desc" style="margin-top: 1vh;">UTGはタイトに開くので、BBも警戒して守るレンジは狭め。プレミアハンドで3ベット、ミドル帯のスーテッドでコール。</p>
+      <div class="chart-wrap">
+        <div class="chart" id="chart-bb-vs-utg"></div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch raise"></span>Raise (3-bet)</div>
+      <div class="legend-item"><span class="legend-swatch call"></span>Call</div>
+      <div class="legend-item"><span class="legend-swatch fold"></span>Fold</div>
+      <div class="legend-item"><span class="legend-swatch pair"></span>Pair</div>
+    </div>
+  </section>
+
+</div>
+
+<a href="./index.html" class="back-link">‹ スライドに戻る</a>
+
+<script>
+  // ランク順(高→低)
+  const RANKS = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
+
+  /**
+   * ハンド名を13×13グリッド位置から作る
+   * row < col → スーテッド(上三角), row > col → オフスート(下三角), row === col → ペア
+   */
+  function handLabel(rowIdx, colIdx) {
+    const r1 = RANKS[rowIdx], r2 = RANKS[colIdx];
+    if (rowIdx === colIdx) return r1 + r2;       // ペア (AA, KK, ...)
+    if (rowIdx < colIdx)  return r1 + r2 + 's';  // スーテッド (上三角)
+    return r2 + r1 + 'o';                         // オフスート (下三角) - 高い方が先
+  }
+
+  /**
+   * チャートを描画
+   * actionMap: { 'AA': 'raise', 'AKs': 'raise', 'AKo': 'call', ... }
+   * 未指定は 'fold'
+   */
+  function renderChart(elementId, actionMap) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const frag = document.createDocumentFragment();
+    for (let row = 0; row < 13; row++) {
+      for (let col = 0; col < 13; col++) {
+        const hand = handLabel(row, col);
+        const action = actionMap[hand] || 'fold';
+        const cell = document.createElement('div');
+        cell.className = 'cell ' + action + (row === col ? ' pair' : '');
+        cell.textContent = hand;
+        cell.title = hand + ' — ' + action.toUpperCase();
+        frag.appendChild(cell);
+      }
+    }
+    el.appendChild(frag);
+  }
+
+  /* ============================================================
+     UTG オープンレンジ (9-max, タイト)
+     ============================================================ */
+  const UTG = {
+    // ペア: 77+
+    'AA': 'raise', 'KK': 'raise', 'QQ': 'raise', 'JJ': 'raise',
+    'TT': 'raise', '99': 'raise', '88': 'raise', '77': 'raise',
+    // スーテッドエース: ATs+, A5s (一部のサテライト)
+    'AKs': 'raise', 'AQs': 'raise', 'AJs': 'raise', 'ATs': 'raise',
+    // スーテッドキング: KQs, KJs
+    'KQs': 'raise', 'KJs': 'raise',
+    // スーテッドクイーン: QJs
+    'QJs': 'raise',
+    // スーテッドコネクター(ハイ): JTs, T9s(任意)
+    'JTs': 'raise',
+    // オフスート: AKo, AQo のみ
+    'AKo': 'raise', 'AQo': 'raise',
+  };
+
+  /* ============================================================
+     BTN オープンレンジ (9-max, ワイド)
+     ============================================================ */
+  const BTN = {
+    // ペア: 全部
+    'AA': 'raise', 'KK': 'raise', 'QQ': 'raise', 'JJ': 'raise',
+    'TT': 'raise', '99': 'raise', '88': 'raise', '77': 'raise',
+    '66': 'raise', '55': 'raise', '44': 'raise', '33': 'raise', '22': 'raise',
+    // スーテッドエース: 全部
+    'AKs': 'raise', 'AQs': 'raise', 'AJs': 'raise', 'ATs': 'raise',
+    'A9s': 'raise', 'A8s': 'raise', 'A7s': 'raise', 'A6s': 'raise',
+    'A5s': 'raise', 'A4s': 'raise', 'A3s': 'raise', 'A2s': 'raise',
+    // スーテッドキング: K9s以上
+    'KQs': 'raise', 'KJs': 'raise', 'KTs': 'raise', 'K9s': 'raise',
+    'K8s': 'raise', 'K7s': 'raise', 'K6s': 'raise', 'K5s': 'raise',
+    // スーテッドクイーン: Q8s以上
+    'QJs': 'raise', 'QTs': 'raise', 'Q9s': 'raise', 'Q8s': 'raise',
+    // スーテッドジャック: J8s以上
+    'JTs': 'raise', 'J9s': 'raise', 'J8s': 'raise',
+    // スーテッドテン以下
+    'T9s': 'raise', 'T8s': 'raise', 'T7s': 'raise',
+    '98s': 'raise', '97s': 'raise',
+    '87s': 'raise', '86s': 'raise',
+    '76s': 'raise', '75s': 'raise',
+    '65s': 'raise', '64s': 'raise',
+    '54s': 'raise', '53s': 'raise',
+    '43s': 'raise',
+    // オフスート: 広めに開く
+    'AKo': 'raise', 'AQo': 'raise', 'AJo': 'raise', 'ATo': 'raise',
+    'A9o': 'raise', 'A8o': 'raise', 'A7o': 'raise', 'A6o': 'raise', 'A5o': 'raise',
+    'KQo': 'raise', 'KJo': 'raise', 'KTo': 'raise', 'K9o': 'raise',
+    'QJo': 'raise', 'QTo': 'raise', 'Q9o': 'raise',
+    'JTo': 'raise', 'J9o': 'raise',
+    'T9o': 'raise',
+    '98o': 'raise',
+  };
+
+  /* ============================================================
+     BB vs BTN OPEN (広くディフェンス)
+     ============================================================ */
+  const BB_VS_BTN = {
+    // 3ベット(リレイズ)レンジ
+    'AA': 'raise', 'KK': 'raise', 'QQ': 'raise', 'JJ': 'raise',
+    'AKs': 'raise', 'AKo': 'raise',
+    'AQs': 'raise',
+    // ブラフ3ベット候補(ブロッカー持ち)
+    'A5s': 'raise', 'A4s': 'raise',
+    'K9s': 'raise',
+    // コール
+    'TT': 'call', '99': 'call', '88': 'call', '77': 'call',
+    '66': 'call', '55': 'call', '44': 'call', '33': 'call', '22': 'call',
+    'AJs': 'call', 'ATs': 'call', 'A9s': 'call', 'A8s': 'call',
+    'A7s': 'call', 'A6s': 'call', 'A3s': 'call', 'A2s': 'call',
+    'KQs': 'call', 'KJs': 'call', 'KTs': 'call',
+    'K8s': 'call', 'K7s': 'call', 'K6s': 'call', 'K5s': 'call',
+    'QJs': 'call', 'QTs': 'call', 'Q9s': 'call', 'Q8s': 'call', 'Q7s': 'call',
+    'JTs': 'call', 'J9s': 'call', 'J8s': 'call', 'J7s': 'call',
+    'T9s': 'call', 'T8s': 'call', 'T7s': 'call', 'T6s': 'call',
+    '98s': 'call', '97s': 'call', '96s': 'call',
+    '87s': 'call', '86s': 'call', '85s': 'call',
+    '76s': 'call', '75s': 'call', '74s': 'call',
+    '65s': 'call', '64s': 'call',
+    '54s': 'call', '53s': 'call',
+    '43s': 'call',
+    'AQo': 'call', 'AJo': 'call', 'ATo': 'call', 'A9o': 'call',
+    'A8o': 'call', 'A7o': 'call', 'A6o': 'call', 'A5o': 'call',
+    'KQo': 'call', 'KJo': 'call', 'KTo': 'call', 'K9o': 'call',
+    'QJo': 'call', 'QTo': 'call', 'Q9o': 'call',
+    'JTo': 'call', 'J9o': 'call',
+    'T9o': 'call', 'T8o': 'call',
+    '98o': 'call', '87o': 'call',
+  };
+
+  /* ============================================================
+     BB vs UTG OPEN (タイトにディフェンス)
+     ============================================================ */
+  const BB_VS_UTG = {
+    // 3ベット(プレミアのみ)
+    'AA': 'raise', 'KK': 'raise', 'QQ': 'raise',
+    'AKs': 'raise', 'AKo': 'raise',
+    // 一部ブラフ3ベット候補
+    'A5s': 'raise',
+    // コール(警戒しつつ参加)
+    'JJ': 'call', 'TT': 'call', '99': 'call', '88': 'call',
+    '77': 'call', '66': 'call', '55': 'call', '44': 'call',
+    '33': 'call', '22': 'call',
+    'AQs': 'call', 'AJs': 'call', 'ATs': 'call',
+    'A9s': 'call', 'A8s': 'call', 'A7s': 'call', 'A6s': 'call',
+    'A4s': 'call', 'A3s': 'call', 'A2s': 'call',
+    'KQs': 'call', 'KJs': 'call', 'KTs': 'call', 'K9s': 'call',
+    'QJs': 'call', 'QTs': 'call', 'Q9s': 'call',
+    'JTs': 'call', 'J9s': 'call',
+    'T9s': 'call', 'T8s': 'call',
+    '98s': 'call', '97s': 'call',
+    '87s': 'call', '86s': 'call',
+    '76s': 'call', '65s': 'call', '54s': 'call',
+    'AQo': 'call', 'AJo': 'call',
+    'KQo': 'call',
+  };
+
+  /* ============================================================
+     描画
+     ============================================================ */
+  renderChart('chart-utg', UTG);
+  renderChart('chart-btn', BTN);
+  renderChart('chart-bb-vs-btn', BB_VS_BTN);
+  renderChart('chart-bb-vs-utg', BB_VS_UTG);
+
+  /* ============================================================
+     タブ切替
+     ============================================================ */
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panelId = tab.dataset.tab;
+      // タブ
+      tab.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // パネル
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
