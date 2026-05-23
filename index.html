@@ -389,6 +389,261 @@
     font-weight: 500;
   }
 
+  /* 統合ポジションスライド */
+  .position-unified {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 3vw;
+    height: 100%;
+    align-items: center;
+  }
+
+  .position-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .why-position-box {
+    padding: 1.8vh 1.5vw;
+    border-left: 2px solid var(--gold);
+    background: rgba(200, 163, 90, 0.04);
+  }
+
+  .why-position-box .why-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8vh;
+  }
+
+  .why-position-box p {
+    font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+    line-height: 1.65;
+    color: var(--ink-dim);
+    margin-bottom: 0.8vh;
+  }
+
+  .why-position-box p:last-child { margin-bottom: 0; }
+
+  .why-position-box strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .why-position-box .key {
+    color: var(--gold-bright);
+    font-weight: 500;
+  }
+
+  .position-range-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .position-range-table tr {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .position-range-table tr:last-child { border-bottom: none; }
+
+  .position-range-table td {
+    padding: 0.9vh 0.6vw;
+    font-size: clamp(0.72rem, 0.88vw, 0.85rem);
+    vertical-align: middle;
+  }
+
+  .position-range-table .pos-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    width: 22%;
+    letter-spacing: 0.05em;
+  }
+
+  .position-range-table .pos-tag.btn { color: var(--gold-bright); }
+  .position-range-table .pos-tag.late { color: var(--gold); }
+  .position-range-table .pos-tag.mid { color: var(--ink-dim); }
+  .position-range-table .pos-tag.early { color: var(--red); }
+  .position-range-table .pos-tag.blind { color: var(--ink); }
+
+  .position-range-table .pos-hands {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+    color: var(--ink);
+    width: 38%;
+  }
+
+  .position-range-table .pos-note {
+    font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+    color: var(--ink-dim);
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  .pos-bar {
+    display: inline-block;
+    height: 6px;
+    background: var(--gold);
+    vertical-align: middle;
+    margin-right: 0.5vw;
+    border-radius: 2px;
+  }
+
+  /* スタック価値の説明スライド */
+  .why-bb {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    align-items: center;
+    height: 100%;
+  }
+
+  .why-bb-text p {
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    line-height: 1.85;
+    color: var(--ink-dim);
+    margin-bottom: 2vh;
+  }
+
+  .why-bb-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .why-bb-text .em {
+    color: var(--gold-bright);
+    font-weight: 500;
+  }
+
+  .chip-comparison {
+    border: 1px solid var(--line);
+    padding: 2.5vh 2vw;
+    background: rgba(10, 8, 5, 0.4);
+  }
+
+  .chip-comparison-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 2vh;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .chip-scenario {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1vw;
+    align-items: center;
+    margin-bottom: 1.5vh;
+    padding-bottom: 1.5vh;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .chip-scenario:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .chip-amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .chip-amount .num {
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    color: var(--gold-bright);
+    display: block;
+    margin-bottom: 0.3vh;
+  }
+
+  .chip-amount .label {
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .chip-arrow {
+    color: var(--ink-muted);
+    font-size: 1.2rem;
+  }
+
+  .chip-verdict {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+  }
+
+  .chip-verdict.deep { color: var(--gold-bright); }
+  .chip-verdict.shallow { color: var(--red); }
+
+  /* スタック戦略テーブル拡張版 */
+  .stack-table-detailed {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .stack-table-detailed thead {
+    border-bottom: 1.5px solid var(--gold);
+  }
+
+  .stack-table-detailed th {
+    text-align: left;
+    padding: 1.2vh 1vw;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .stack-table-detailed tbody tr {
+    border-bottom: 1px solid var(--line);
+    transition: background 0.2s;
+  }
+
+  .stack-table-detailed tbody tr:hover {
+    background: rgba(200, 163, 90, 0.05);
+  }
+
+  .stack-table-detailed td {
+    padding: 1.6vh 1vw;
+    font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+    line-height: 1.55;
+    vertical-align: top;
+  }
+
+  .stack-table-detailed .bb-cell {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gold-bright);
+    font-weight: 500;
+    width: 14%;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding-top: 1.8vh;
+  }
+
+  .stack-table-detailed .strategy-cell {
+    color: var(--ink);
+    width: 28%;
+    font-weight: 500;
+  }
+
+  .stack-table-detailed .reason-cell {
+    color: var(--ink-dim);
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  .stack-table-detailed .reason-cell strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .stack-table-detailed .danger .bb-cell { color: var(--red); }
+
   /* 用語集スライド */
   .glossary-grid {
     display: grid;
@@ -713,20 +968,20 @@
   .mistake-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5vh 3vw;
+    gap: 1.8vh 3vw;
   }
 
   .mistake-item {
     display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1.5vw;
+    grid-template-columns: 50px 1fr;
+    gap: 1.2vw;
     align-items: start;
   }
 
   .mistake-mark {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     color: var(--red);
     line-height: 0.8;
     opacity: 0.7;
@@ -734,15 +989,15 @@
 
   .mistake-item h3 {
     font-family: 'Shippori Mincho', serif;
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--ink);
-    margin-bottom: 0.8vh;
+    margin-bottom: 0.6vh;
     font-weight: 600;
   }
 
   .mistake-item p {
-    font-size: 0.85rem;
-    line-height: 1.65;
+    font-size: 0.82rem;
+    line-height: 1.6;
     color: var(--ink-dim);
   }
 
@@ -932,6 +1187,31 @@
       font-size: 0.8rem;
     }
 
+    /* なぜBB換算か */
+    .why-bb {
+      grid-template-columns: 1fr;
+      gap: 2.5vh;
+    }
+    .why-bb-text p { font-size: 0.85rem; line-height: 1.7; }
+    .chip-comparison { padding: 2vh 4vw; }
+    .chip-comparison-title { font-size: 0.65rem; }
+    .chip-amount .num { font-size: 1rem; }
+    .chip-amount .label { font-size: 0.6rem; }
+    .chip-verdict { font-size: 0.82rem; }
+
+    /* 詳細戦略テーブル */
+    .stack-table-detailed th {
+      font-size: 0.55rem;
+      padding: 1vh 0.5rem;
+    }
+    .stack-table-detailed td {
+      padding: 1.2vh 0.5rem;
+      font-size: 0.72rem;
+    }
+    .stack-table-detailed .bb-cell { font-size: 0.7rem; width: 18%; }
+    .stack-table-detailed .strategy-cell { font-size: 0.75rem; width: 30%; }
+    .stack-table-detailed .reason-cell { font-size: 0.72rem; line-height: 1.5; }
+
     /* ポジション図(2スライドとも) */
     .position-layout,
     .position-explain {
@@ -971,6 +1251,20 @@
     .legend-desc,
     .glossary-full { font-size: 0.8rem; }
     .glossary-full .full-name { font-size: 0.85rem; }
+
+    /* 統合ポジション */
+    .position-unified {
+      grid-template-columns: 1fr;
+      gap: 2.5vh;
+    }
+    .position-right { gap: 1.5vh; }
+    .why-position-box { padding: 1.5vh 4vw; }
+    .why-position-box .why-label { font-size: 0.55rem; }
+    .why-position-box p { font-size: 0.78rem; line-height: 1.55; }
+    .position-range-table td { padding: 0.7vh 0.5vw; font-size: 0.7rem; }
+    .position-range-table .pos-tag { width: 25%; }
+    .position-range-table .pos-hands { font-size: 0.68rem; width: 38%; }
+    .position-range-table .pos-note { font-size: 0.7rem; }
 
     /* ミスリスト */
     .mistake-grid {
@@ -1090,7 +1384,7 @@
   <section class="slide" data-slide="2">
     <div class="slide-header">
       <div class="slide-section">Chapter I — Etiquette</div>
-      <div class="slide-pager"><span class="current">02</span> / 12</div>
+      <div class="slide-pager"><span class="current">02</span> / 11</div>
     </div>
     <h2>テーブルマナー <span class="accent">— 最低限これだけ</span></h2>
     <div class="lead">所作ひとつで「分かってる感」が出るし、大きな事故を防げる。</div>
@@ -1103,8 +1397,8 @@
         </div>
         <div class="manner-card">
           <div class="num">ii.</div>
-          <h3>ストリングベットNG</h3>
-          <p>レイズは<span class="highlight">チップを一回の動作で前に出す</span>。「100…さらに200」と小分けに足すのは禁止。先に「レイズ、合計500」と口頭で宣言してからチップを出すのが安全。</p>
+          <h3>ベットは一回の動作で</h3>
+          <p>レイズは<span class="highlight">チップを一回の動作で前に出す</span>。「100…さらに200」と小分けに足すのは<span class="highlight">ストリングベット</span>で禁止。先に「レイズ、合計500」と口頭で宣言してから出すのが安全。<br><br>逆に <span class="highlight">高額チップを1枚だけポンと置くとコール扱い</span>になるルールも(例: コール額が100で1000チップ1枚をポン → レイズじゃなくコール)。レイズしたいなら必ず<span class="highlight">事前に口頭宣言</span>を。</p>
         </div>
         <div class="manner-card">
           <div class="num">iii.</div>
@@ -1115,102 +1409,112 @@
     </div>
   </section>
 
-  <!-- スライド3: スタック管理 -->
+  <!-- スライド3: なぜBB換算なのか -->
   <section class="slide" data-slide="3">
     <div class="slide-header">
       <div class="slide-section">Chapter II — Stack Strategy</div>
-      <div class="slide-pager"><span class="current">03</span> / 12</div>
+      <div class="slide-pager"><span class="current">03</span> / 11</div>
     </div>
-    <h2>スタック管理 <span class="accent">— BB換算で見る</span></h2>
-    <div class="lead">アミューズメントは15〜30分でブラインドが上がる。「BB何個分か」で常に把握。</div>
+    <h2>なぜ <span class="accent">BB換算</span> で見るのか</h2>
+    <div class="lead">「いま自分はこのテーブルでどれくらい強い立場なのか」を測る唯一の物差し。</div>
     <div class="content">
-      <table class="stack-table">
-        <tr>
-          <td class="bb-label">50 BB 以上</td>
-          <td class="strategy">普通にプレイできる。深いスタックを活かせる局面。</td>
-        </tr>
-        <tr>
-          <td class="bb-label">20 — 40 BB</td>
-          <td class="strategy">ポストフロップの選択肢が減ってくる。慎重に。</td>
-        </tr>
-        <tr>
-          <td class="bb-label">10 — 20 BB</td>
-          <td class="strategy">リレイズオールイン中心の戦い方に切り替え。</td>
-        </tr>
-        <tr class="danger">
-          <td class="bb-label">10 BB 以下</td>
-          <td class="strategy">プッシュ・オア・フォールド。オールインかフォールドの二択。</td>
-        </tr>
-      </table>
-      <p style="margin-top: 4vh; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--ink-dim); text-align: center;">
-        — 序盤は無理せず、勝負どころを選ぶ。AAでオールイン受けて終了が一番もったいない。
-      </p>
-    </div>
-  </section>
-
-  <!-- スライド4: ポジション -->
-  <section class="slide" data-slide="4">
-    <div class="slide-header">
-      <div class="slide-section">Chapter III — Position</div>
-      <div class="slide-pager"><span class="current">04</span> / 12</div>
-    </div>
-    <h2>ポジション <span class="accent">— ここが一番大事</span></h2>
-    <div class="lead">「ポジションが強い」とは、そのストリートで最後にアクションできること。情報量が全く違う。</div>
-    <div class="content">
-      <div class="position-layout">
-        <div class="position-table-vis">
-          <div class="felt"></div>
-          <!-- 9席を円周配置 -->
-          <div class="seat btn" style="top: 50%; left: 95%;">BTN</div>
-          <div class="seat blind" style="top: 78%; left: 87%;">SB</div>
-          <div class="seat blind" style="top: 95%; left: 65%;">BB</div>
-          <div class="seat early" style="top: 95%; left: 35%;">UTG</div>
-          <div class="seat early" style="top: 78%; left: 13%;">UTG+1</div>
-          <div class="seat mid" style="top: 50%; left: 5%;">MP</div>
-          <div class="seat mid" style="top: 22%; left: 13%;">LJ</div>
-          <div class="seat late" style="top: 5%; left: 35%;">HJ</div>
-          <div class="seat late" style="top: 5%; left: 65%;">CO</div>
+      <div class="why-bb">
+        <div class="why-bb-text">
+          <p>トーナメントでは <strong>ブラインドが時間で上がっていく</strong>。つまり、<strong>同じチップ枚数でも時間が経つほど「価値」が下がる</strong>。</p>
+          <p>チップの絶対量だけ見ても、<em>今</em> のテーブルで自分がどれだけ戦えるかは判断できない。</p>
+          <p>そこで使うのが <span class="em">BB換算</span>。<strong>「参加するための最低必要額(=BB)の何倍を持っているか」</strong> を見ることで、ブラインドが変わっても同じ物差しでスタックの強さを測れる。</p>
+          <p>BBが何倍あるかで、<strong>選べる戦略の幅</strong> がガラッと変わる。だから毎ハンド「今、自分は何BBか?」を意識する必要がある。</p>
         </div>
-        <div class="position-legend">
-          <div class="legend-item">
-            <span class="legend-tag btn">BTN</span>
-            <span class="legend-desc"><strong>最強ポジション</strong>。ポストフロップで必ず最後に動ける。広く参加可。</span>
+        <div class="chip-comparison">
+          <div class="chip-comparison-title">— Same Stack, Different Value —</div>
+          <div class="chip-scenario">
+            <div class="chip-amount">
+              <span class="num">10,000</span>
+              <span class="label">chips</span>
+            </div>
+            <div class="chip-arrow">÷ BB 100 →</div>
+            <div class="chip-verdict deep">100 BB<br><span style="font-size:0.7rem; color:var(--ink-muted);">深い・自由に戦える</span></div>
           </div>
-          <div class="legend-item">
-            <span class="legend-tag late">CO / HJ</span>
-            <span class="legend-desc">レイト。スーテッドコネクターや弱めの絵札も参加候補に。</span>
+          <div class="chip-scenario">
+            <div class="chip-amount">
+              <span class="num">10,000</span>
+              <span class="label">chips</span>
+            </div>
+            <div class="chip-arrow">÷ BB 1,000 →</div>
+            <div class="chip-verdict" style="color:var(--ink-dim);">10 BB<br><span style="font-size:0.7rem; color:var(--ink-muted);">浅い・選択肢が狭い</span></div>
           </div>
-          <div class="legend-item">
-            <span class="legend-tag mid">MP / LJ</span>
-            <span class="legend-desc">ミドル。AQ, TT, 99 など少しずつ広げられる。</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-tag early">UTG</span>
-            <span class="legend-desc">アーリー。後ろに何人も残る。<strong>AA, KK, QQ, AK, JJ くらいに絞る</strong>。</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-tag blind">SB / BB</span>
-            <span class="legend-desc">安く参加できるがポストフロップは不利。最初に動く側になる。</span>
+          <div class="chip-scenario">
+            <div class="chip-amount">
+              <span class="num">10,000</span>
+              <span class="label">chips</span>
+            </div>
+            <div class="chip-arrow">÷ BB 2,000 →</div>
+            <div class="chip-verdict shallow">5 BB<br><span style="font-size:0.7rem; color:var(--ink-muted);">瀕死・押すしかない</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- スライド5: ポジション名称解説 -->
+  <!-- スライド4: スタック帯別の戦略と根拠 -->
+  <section class="slide" data-slide="4">
+    <div class="slide-header">
+      <div class="slide-section">Chapter II — Stack Strategy</div>
+      <div class="slide-pager"><span class="current">04</span> / 11</div>
+    </div>
+    <h2>BB帯別の <span class="accent">戦略 — そしてその根拠</span></h2>
+    <div class="lead">戦略は「持ってるBB数」で決まる。なぜそうなるかを理解すると応用が効く。</div>
+    <div class="content">
+      <table class="stack-table-detailed">
+        <thead>
+          <tr>
+            <th>Stack</th>
+            <th>戦略</th>
+            <th>なぜそうなる?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bb-cell">50 BB+</td>
+            <td class="strategy-cell">深く戦える。<br>ハンドの強弱で繊細に。</td>
+            <td class="reason-cell">フロップ・ターン・リバーと <strong>複数ストリート使って情報を取れる</strong>。ブラフもバリューも自由に組み立てられ、間違えてもリカバーできる余裕がある。</td>
+          </tr>
+          <tr>
+            <td class="bb-cell">20 — 40 BB</td>
+            <td class="strategy-cell">慎重に。<br>バリュー寄りで動く。</td>
+            <td class="reason-cell">2〜3回ベットしたら <strong>オールイン射程に入る深さ</strong>。中途半端にブラフして降りられないとコミットしてしまう。降りる勇気とバリュー判断が重要。</td>
+          </tr>
+          <tr>
+            <td class="bb-cell">10 — 20 BB</td>
+            <td class="strategy-cell">リレイズオールイン<br>(リシュー) が武器。</td>
+            <td class="reason-cell">レイズしてコールされると <strong>ポット対スタック比が悪すぎてフロップで動けない</strong>。だったら最初からプッシュで相手に「降りるかコールか」を迫る方が強い。</td>
+          </tr>
+          <tr class="danger">
+            <td class="bb-cell">10 BB 以下</td>
+            <td class="strategy-cell">プッシュ・オア・フォールド。<br>待つほど不利。</td>
+            <td class="reason-cell">スタックが小さいほど <strong>相手が降りる確率(=フォールドエクイティ)が下がる</strong>。「ペイで割に合う」ので相手はコールしやすい。良いハンドを待ってる間にもブラインドで削れる → 早めに仕掛けるのが正解。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 2.5vh; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(0.85rem, 1.1vw, 1rem); color: var(--ink-dim); text-align: center;">
+        — 序盤は無理せず、勝負どころを選ぶ。AAでオールイン受けて終了が一番もったいない。
+      </p>
+    </div>
+  </section>
+
+  <!-- スライド5: ポジション(統合) -->
   <section class="slide" data-slide="5">
     <div class="slide-header">
-      <div class="slide-section">Chapter III — Position Names</div>
-      <div class="slide-pager"><span class="current">05</span> / 12</div>
+      <div class="slide-section">Chapter III — Position</div>
+      <div class="slide-pager"><span class="current">05</span> / 11</div>
     </div>
-    <h2>各ポジションの <span class="accent">呼び方</span></h2>
-    <div class="lead">ディーラーから時計回りに席を辿る。略称は配信や解説でも頻出。</div>
+    <h2>ポジション <span class="accent">— ここが一番大事</span></h2>
+    <div class="lead">「ポジションが強い」とは、そのストリートで最後にアクションできること。情報量が全く違う。</div>
     <div class="content">
-      <div class="position-explain">
+      <div class="position-unified">
         <div class="explain-table-vis">
           <div class="felt"></div>
           <div class="dealer-marker"></div>
-          <!-- BTNから時計回りに -->
           <div class="seat-label btn" style="top: 50%; left: 95%;">BTN<span class="role">button</span></div>
           <div class="seat-label blind" style="top: 78%; left: 87%;">SB<span class="role">small</span></div>
           <div class="seat-label blind" style="top: 95%; left: 65%;">BB<span class="role">big</span></div>
@@ -1221,43 +1525,40 @@
           <div class="seat-label late" style="top: 5%; left: 35%;">HJ<span class="role">hijack</span></div>
           <div class="seat-label late" style="top: 5%; left: 65%;">CO<span class="role">cutoff</span></div>
         </div>
-        <div class="position-glossary">
-          <div class="glossary-item">
-            <span class="glossary-abbr btn">BTN</span>
-            <span class="glossary-full"><span class="full-name">Button</span>ディーラーボタンの位置。<span class="meaning">最強</span>。</span>
+        <div class="position-right">
+          <div class="why-position-box">
+            <div class="why-label">— Why Position Matters —</div>
+            <p><strong>前提:参加人数が少ないほど自分の勝率は上がる</strong>。1対1(ヘッズアップ)なら相手1人に勝てばいい。</p>
+            <p>後ろのポジションは <span class="key">「いま何人が参加しているか」を確定情報として知れる</span>。前の全員が降りて自分の番、なら実質ヘッズアップが見える状況。</p>
+            <p>だから後ろほど <strong>弱めのハンドでも勝負に行ける</strong>。逆に前は何人参加するか分からないので強い手に絞るしかない。</p>
           </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr blind">SB</span>
-            <span class="glossary-full"><span class="full-name">Small Blind</span>BTNの左隣。<span class="meaning">強制ベット少</span>。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr blind">BB</span>
-            <span class="glossary-full"><span class="full-name">Big Blind</span>SBの左隣。<span class="meaning">強制ベット大＋アンティ</span>。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr early">UTG</span>
-            <span class="glossary-full"><span class="full-name">Under the Gun</span>BBの左隣。<span class="meaning">最初にアクション</span>する席。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr early">UTG+1</span>
-            <span class="glossary-full"><span class="full-name">UTG + 1</span>UTGの左隣。アーリー。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr mid">MP</span>
-            <span class="glossary-full"><span class="full-name">Middle Position</span>中央寄り。ミドル。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr mid">LJ</span>
-            <span class="glossary-full"><span class="full-name">Lojack</span>HJの右隣。ミドル後半。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr late">HJ</span>
-            <span class="glossary-full"><span class="full-name">Hijack</span>COの右隣。レイト。</span>
-          </div>
-          <div class="glossary-item">
-            <span class="glossary-abbr late">CO</span>
-            <span class="glossary-full"><span class="full-name">Cutoff</span>BTNの右隣。<span class="meaning">BTNに次ぐ強さ</span>。</span>
-          </div>
+          <table class="position-range-table">
+            <tr>
+              <td class="pos-tag btn">BTN</td>
+              <td class="pos-hands"><span class="pos-bar" style="width: 80px;"></span></td>
+              <td class="pos-note">最強。広く参加可、ブラフも効く</td>
+            </tr>
+            <tr>
+              <td class="pos-tag late">CO / HJ</td>
+              <td class="pos-hands"><span class="pos-bar" style="width: 60px;"></span></td>
+              <td class="pos-note">レイト。スーテッド・絵札追加</td>
+            </tr>
+            <tr>
+              <td class="pos-tag mid">MP / LJ</td>
+              <td class="pos-hands"><span class="pos-bar" style="width: 42px;"></span></td>
+              <td class="pos-note">AQ, TT, 99 あたりを追加</td>
+            </tr>
+            <tr>
+              <td class="pos-tag early">UTG</td>
+              <td class="pos-hands"><span class="pos-bar" style="width: 22px;"></span></td>
+              <td class="pos-note">AA, KK, QQ, AK, JJ に絞る</td>
+            </tr>
+            <tr>
+              <td class="pos-tag blind">SB / BB</td>
+              <td class="pos-hands"><span class="pos-bar" style="width: 38px; background: var(--ink-muted);"></span></td>
+              <td class="pos-note">安く入れるが後で不利になる</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -1267,7 +1568,7 @@
   <section class="slide" data-slide="6">
     <div class="slide-header">
       <div class="slide-section">Chapter IV — Why You Bet</div>
-      <div class="slide-pager"><span class="current">06</span> / 12</div>
+      <div class="slide-pager"><span class="current">06</span> / 11</div>
     </div>
     <h2>ベットの <span class="accent">理由</span> — バリュー or ブラフ</h2>
     <div class="lead">「なんとなく」でベットしないこと。ベットには必ず2つのどちらかの目的がある。</div>
@@ -1318,35 +1619,49 @@
   <section class="slide" data-slide="7">
     <div class="slide-header">
       <div class="slide-section">Chapter V — Common Pitfalls</div>
-      <div class="slide-pager"><span class="current">07</span> / 12</div>
+      <div class="slide-pager"><span class="current">07</span> / 11</div>
     </div>
     <h2>初心者がやりがちな <span class="accent">ミス</span></h2>
-    <div class="lead">この4つだけ意識すれば、致命的な失敗は避けられる。</div>
+    <div class="lead">この6つを意識すれば、致命的な失敗は避けられる。</div>
     <div class="content">
       <div class="mistake-grid">
         <div class="mistake-item">
           <div class="mistake-mark">i</div>
+          <div>
+            <h3>リンプ(コール参加)が多い</h3>
+            <p>レイズせずコールで安く参加する=リンプ。<strong>参加人数を絞れず複数人と戦うことになり勝率↓</strong>。プリフロップは<span class="highlight" style="color:var(--gold-bright);">レイズ or 3ベット</span>で攻めて、相手に「降りるか払うか」を迫り <strong>ヘッズアップに持ち込む</strong> のが基本。</p>
+          </div>
+        </div>
+        <div class="mistake-item">
+          <div class="mistake-mark">ii</div>
+          <div>
+            <h3>ドンクベットしてしまう</h3>
+            <p>プリフロップのレイザーを差し置いて、フロップでOOPから先にベットすること(=ドンク)。<strong>レンジが狭く読まれやすい</strong> し、レイザーの動きも見られない。チェックして相手のCベットを見てから判断する方が情報も取れて柔軟。</p>
+          </div>
+        </div>
+        <div class="mistake-item">
+          <div class="mistake-mark">iii</div>
           <div>
             <h3>絵札・スーテッドの過大評価</h3>
             <p>KQオフスートやJTスーテッドを毎回入っちゃう人が多い。アーリーポジションからは基本フォールドでOK。</p>
           </div>
         </div>
         <div class="mistake-item">
-          <div class="mistake-mark">ii</div>
+          <div class="mistake-mark">iv</div>
           <div>
             <h3>ドローを追いすぎる</h3>
             <p>毎回コールで追うのは長期的に負ける動き。ポットオッズとアウツで判断。フラッシュドローには2:1以上のオッズを。</p>
           </div>
         </div>
         <div class="mistake-item">
-          <div class="mistake-mark">iii</div>
+          <div class="mistake-mark">v</div>
           <div>
             <h3>ベットサイズが不適切</h3>
             <p>基本はポットの1/2〜2/3。ブラフでもバリューでも同じサイズにすると読まれにくい。</p>
           </div>
         </div>
         <div class="mistake-item">
-          <div class="mistake-mark">iv</div>
+          <div class="mistake-mark">vi</div>
           <div>
             <h3>「もったいない」でコール</h3>
             <p>すでに入れたチップは戻ってこない(サンクコスト)。今のポットと相手のレンジだけで判断する。</p>
@@ -1356,28 +1671,11 @@
     </div>
   </section>
 
-  <!-- スライド8: アミューズメント所作 -->
+  <!-- スライド8: 用語集 1 - ゲーム進行・アクション -->
   <section class="slide" data-slide="8">
     <div class="slide-header">
-      <div class="slide-section">Chapter VI — House Customs</div>
-      <div class="slide-pager"><span class="current">08</span> / 12</div>
-    </div>
-    <h2>アミューズメントカジノ <span class="accent">ならではの所作</span></h2>
-    <div class="lead">賞金が出ない代わりに、トーナメントポイントや景品で競う形式。雰囲気は和やか。</div>
-    <div class="content">
-      <div class="amusement-notes">
-        <p>参加者の多くは初〜中級者で、和やかな雰囲気。ただし<span class="strong">ディーラーやフロアの指示には必ず従う</span>。トラブルがあったら「<span class="gold">フロア!</span>」と呼ぶ。</p>
-        <p>チップを投げる(<span class="gold">スプラッシュ・ザ・ポット</span>)のはNG。<span class="strong">自分の前にきれいに置く</span>。スマホをテーブルで触るのは禁止のお店が多いので、休憩中に。</p>
-        <p>店によってルールの細かい違い(<span class="strong">ストラドルの可否、ミスディール時の対応など</span>)があるので、開始前にレギュレーションに目を通すか、ディーラーに聞いておくと安心。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- スライド9: 用語集 1 - ゲーム進行・アクション -->
-  <section class="slide" data-slide="9">
-    <div class="slide-header">
       <div class="slide-section">Glossary I — Game Flow & Action</div>
-      <div class="slide-pager"><span class="current">09</span> / 12</div>
+      <div class="slide-pager"><span class="current">08</span> / 11</div>
     </div>
     <h2>基本用語 <span class="accent">— ゲーム進行・アクション</span></h2>
     <div class="lead">テーブルで飛び交う基本ワード。聞かれて固まらないように。</div>
@@ -1402,26 +1700,32 @@
         <div class="term"><span class="term-word">フォールド</span><span class="term-def">そのハンドから降りる</span></div>
         <div class="term"><span class="term-word">オールイン</span><span class="term-def">手持ちチップを全額賭ける</span></div>
         <div class="term"><span class="term-word">チェックレイズ</span><span class="term-def">チェック後にレイズで返す(強い動き)</span></div>
+        <div class="term"><span class="term-word">リンプ</span><span class="term-def">プリフロップでレイズせずBBと同額のコールで参加</span></div>
+        <div class="term"><span class="term-word">3ベット</span><span class="term-def">レイズに対するリレイズ(プリフロップ)</span></div>
+        <div class="term"><span class="term-word">Cベット</span><span class="term-def">継続ベット(シーベット)。プリフロップのレイザーがフロップでも続けてベット</span></div>
+        <div class="term"><span class="term-word">ドンクベット</span><span class="term-def">OOP(アウトオブポジション)の非レイザーが先にベットすること(基本NG)</span></div>
       </div>
     </div>
   </section>
 
-  <!-- スライド10: 用語集 2 - ポジション・役・スタック -->
-  <section class="slide" data-slide="10">
+  <!-- スライド9: 用語集 2 - ポジション・役・スタック -->
+  <section class="slide" data-slide="9">
     <div class="slide-header">
       <div class="slide-section">Glossary II — Position, Hand & Stack</div>
-      <div class="slide-pager"><span class="current">10</span> / 12</div>
+      <div class="slide-pager"><span class="current">09</span> / 11</div>
     </div>
     <h2>基本用語 <span class="accent">— ポジション・役・スタック</span></h2>
     <div class="lead">ハンドの強さやポジションを語る時の基礎ボキャブラリー。</div>
     <div class="content">
       <div class="glossary-grid">
         <div class="glossary-category">ポジション</div>
-        <div class="term"><span class="term-word">BTN</span><span class="term-def">Button / ディーラー位置・最強</span></div>
-        <div class="term"><span class="term-word">SB / BB</span><span class="term-def">スモール/ビッグブラインド・強制ベット</span></div>
-        <div class="term"><span class="term-word">UTG</span><span class="term-def">Under the Gun / プリフロップ最初のアクション</span></div>
-        <div class="term"><span class="term-word">CO</span><span class="term-def">Cutoff / BTN右隣、レイト</span></div>
-        <div class="term"><span class="term-word">IP / OOP</span><span class="term-def">後アクション(有利) / 先アクション(不利)</span></div>
+        <div class="term"><span class="term-word">BTN</span><span class="term-def">Button(ボタン) / ディーラー位置・最強</span></div>
+        <div class="term"><span class="term-word">SB / BB</span><span class="term-def">スモール / ビッグブラインド・強制ベット</span></div>
+        <div class="term"><span class="term-word">UTG</span><span class="term-def">Under the Gun(アンダー・ザ・ガン) / プリフロップ最初のアクション</span></div>
+        <div class="term"><span class="term-word">CO</span><span class="term-def">Cutoff(カットオフ) / BTN右隣、レイト</span></div>
+        <div class="term"><span class="term-word">HJ / LJ</span><span class="term-def">ハイジャック / ロージャック・ミドル〜レイト</span></div>
+        <div class="term"><span class="term-word">MP</span><span class="term-def">Middle Position(ミドルポジション) / 中央寄り</span></div>
+        <div class="term"><span class="term-word">IP / OOP</span><span class="term-def">インポジション(後アクション・有利) / アウトオブポジション(先アクション・不利)</span></div>
 
         <div class="glossary-category">役(ハンド)</div>
         <div class="term"><span class="term-word">ハイカード</span><span class="term-def">役なし。最高カードで勝負</span></div>
@@ -1438,16 +1742,16 @@
         <div class="term"><span class="term-word">BB換算</span><span class="term-def">スタックをBB何個分かで見る</span></div>
         <div class="term"><span class="term-word">アンティ</span><span class="term-def">全員が払う少額強制ベット(BBがまとめ払い)</span></div>
         <div class="term"><span class="term-word">バブル</span><span class="term-def">あと1人で入賞のギリギリ局面</span></div>
-        <div class="term"><span class="term-word">ITM</span><span class="term-def">In The Money / 入賞圏入り</span></div>
+        <div class="term"><span class="term-word">ITM</span><span class="term-def">In The Money(イン・ザ・マネー) / 入賞圏入り</span></div>
       </div>
     </div>
   </section>
 
-  <!-- スライド11: 用語集 3 - 戦略・状況・俗語 -->
-  <section class="slide" data-slide="11">
+  <!-- スライド10: 用語集 3 - 戦略・状況・俗語 -->
+  <section class="slide" data-slide="10">
     <div class="slide-header">
       <div class="slide-section">Glossary III — Strategy & Slang</div>
-      <div class="slide-pager"><span class="current">11</span> / 12</div>
+      <div class="slide-pager"><span class="current">10</span> / 11</div>
     </div>
     <h2>基本用語 <span class="accent">— 戦略・状況・俗語</span></h2>
     <div class="lead">中級者になっても使い続ける戦略・状況ワード。</div>
@@ -1468,6 +1772,7 @@
         <div class="term"><span class="term-word">セミブラフ</span><span class="term-def">今は弱いがドローありのブラフ</span></div>
 
         <div class="glossary-category">状況・俗語</div>
+        <div class="term"><span class="term-word">ヘッズアップ</span><span class="term-def">残り2人で勝負する状況(1対1)</span></div>
         <div class="term"><span class="term-word">ティルト</span><span class="term-def">負けで冷静さを失い判断が乱れた状態</span></div>
         <div class="term"><span class="term-word">バッドビート</span><span class="term-def">有利だったハンドが不運な1枚で逆転負け</span></div>
         <div class="term"><span class="term-word">マック</span><span class="term-def">負けたカードを見せずにフォールド</span></div>
@@ -1477,11 +1782,11 @@
     </div>
   </section>
 
-  <!-- スライド12: まとめ -->
-  <section class="slide" data-slide="12">
+  <!-- スライド11: まとめ -->
+  <section class="slide" data-slide="11">
     <div class="slide-header">
       <div class="slide-section">Final — Five Essentials</div>
-      <div class="slide-pager"><span class="current">12</span> / 12</div>
+      <div class="slide-pager"><span class="current">11</span> / 11</div>
     </div>
     <h2>最低限 <span class="accent">これだけは</span></h2>
     <div class="lead">この5つを意識してもらえれば、初心者でも事故なく楽しめます。</div>
@@ -1505,7 +1810,7 @@
         </div>
         <div class="summary-item">
           <div class="summary-num">v</div>
-          <div class="summary-text">序盤は無理せず <span class="em">勝負どころを選ぶ</span></div>
+          <div class="summary-text">良いハンドのときは <span class="em">リンプせず3ベット</span> で参加人数を絞る</div>
         </div>
       </div>
     </div>
